@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./frontend/css/style.css">
+  <title>CRUD-ALUMNOS</title>
+</head>
+<body>
+  <h1>CRUD-ALUMNOS</h1>
+
+  <main id="main">
+
+    <form id="form-crud" action="./backend/nexo.php">
+      <div id="containerSelect">
+        <div class="containerInput">
+          <label for="sel-acciones" id="lblAccion">Acción</label>
+          <select name="accion" id="sel-acciones">
+            <option disabled selected value id="selectedDefault">-- Seleccione una acción --</option>
+            <option value="listar">Listar</option>
+            <option value="agregar">Agregar</option>
+            <option value="modificar">Modificar</option>
+            <option value="remover">Remover</option>
+            <option value="verificarLegajo">Verificar Legajo</option>
+          </select>
+        </div>
+      </div>
+    </form>
+    
+  </main>
+
+
+
+
+  <button onclick="manejador()">CLICK AQUI</button>
+  <button ondblclick="dblClick()">DOBLE CLICK AQUI</button>
+
+  <script>
+      function manejador() {
+        alert('Has clickeado en el botón, felicitaciones');
+      }
+  
+      function dblClick() {
+        alert('Doble click, sos re gato');
+      }
+  </script>
+
+  <!--<script src="./frontend/js/script.js" type="module"></script>-->
+</body>
+</html>
