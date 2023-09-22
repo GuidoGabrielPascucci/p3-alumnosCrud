@@ -1,7 +1,6 @@
-<?php
-require "./validar.php";
+<?php require "./validar.php";
 
-function agregarAlumno() {
+function agregarAlumno(): void {
   $validacion = validarEntradas('nombre', 'apellido', 'legajo');
   switch($validacion){
     case -1:
@@ -28,12 +27,12 @@ function agregarNuevoRegistro(): stdClass {
   return $obj;
 }
 
-function agregarSaltoDeLinea(string $linea, stdClass $obj) {
+function agregarSaltoDeLinea(string $linea, stdClass $obj): void {
   if (!isset($obj->data)) $obj->data = "";
   $obj->data .= $linea . "<br>";
 }
 
-function escribirArchivo($func) {
+function escribirArchivo($func): bool {
   $exito = false; 
   $objEstandar = call_user_func($func);
   if ($objEstandar) {
@@ -47,7 +46,7 @@ function escribirArchivo($func) {
   return $exito;
 }
 
-function leerArchivo($func, $func2 = null) {
+function leerArchivo($func, $func2 = null): stdClass|bool {
   if (!file_exists(PATH)) {
     echo ERR_NONEXISTENT_FILE_MESSAGE;
     return false;
@@ -66,12 +65,12 @@ function leerArchivo($func, $func2 = null) {
   }
 }
 
-function listarAlumnos() {
+function listarAlumnos(): void {
   $obj = leerArchivo("agregarSaltoDeLinea");
   if ($obj) mostrarArchivo($obj);
 }
 
-function modificarAlumno() {
+function modificarAlumno(): void {
   $validacion = validarEntradas('nombre', 'apellido', 'legajo');
   switch($validacion){
     case -1:
@@ -88,7 +87,7 @@ function modificarAlumno() {
   }
 }
 
-function modificarRegistroExistente() {
+function modificarRegistroExistente(): stdClass|bool {
   $objEstandar = leerArchivo('verificarExistenciaDeLegajo');
   if ($objEstandar->existeLegajo) {
     $apellido = $_POST['apellido'];
@@ -110,7 +109,7 @@ function modificarRegistroExistente() {
   } else return false;
 }
 
-function mostrarArchivo(stdClass $obj) {
+function mostrarArchivo(stdClass $obj): void {
   if (!isset($obj->data) || gettype($obj->data) != "string" || $obj->data === "") {
     echo ERR_READING_FILE_MESSAGE;
   } else {
@@ -118,7 +117,7 @@ function mostrarArchivo(stdClass $obj) {
   }
 }
 
-function mostrarVerificacionDeLegajo(stdClass $obj) {
+function mostrarVerificacionDeLegajo(stdClass $obj): void {
   if (!isset($obj->existeLegajo) || gettype($obj->existeLegajo) != "boolean") {
     echo ERR_READING_FILE_MESSAGE;
   } else if ($obj->existeLegajo) {
@@ -128,15 +127,15 @@ function mostrarVerificacionDeLegajo(stdClass $obj) {
   }
 }
 
-function verificarAlumno() {
-  if (!validarEntradas('legajo')) echo MISSING_INPUT_MESSAGE;
+function verificarAlumno(): void {
+  if (!validarEntradas('legajo')) echo ERR_MISSING_INPUT_MESSAGE;
   else {
     $obj = leerArchivo("verificarExistenciaDeLegajo");
     if ($obj) mostrarVerificacionDeLegajo($obj);
   }
 }
 
-function verificarExistenciaDeLegajo(string $linea, stdClass $obj) {
+function verificarExistenciaDeLegajo(string $linea, stdClass $obj): void {
   $obj->numeroLegajo = $_POST['legajo'];
   $obj->existeLegajo = false;
   $campos = explode('-', $linea);

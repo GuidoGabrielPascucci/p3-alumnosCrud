@@ -15,6 +15,22 @@
     DOM.agregarElementos(campos);
   }
 
+  static verificarLegajo(form) {
+    const $contenedorPadre = DOM.crearDiv(C.DIV_CONTAINER_PADRE_ID, null, DOM.estilizarContenedorPadre);
+    const $contenedorInputs = DOM.crearDiv(null, C.DIV_CONTAINER_HIJO_CLASS, DOM.estilizarContenedorInput);
+    const $input = DOM.crearInput("text", "txtLegajo", "legajo", "Ingrese su legajo");
+    const $label = DOM.crearLabel("Legajo", $input.id);
+    const $contenedorBoton = DOM.crearDiv(C.DIV_CONTAINER_BUTTON_ID, null, DOM.estilizarContenedorBoton); 
+    const $btn = DOM.crearBoton("submit", C.BTN_ENVIAR_PETICION_ID, C.BTN_ENVIAR_PETICION_TEXTCONTENT, DOM.estilizarBoton);
+    const $fragment = document.createDocumentFragment();
+    $contenedorInputs.append($label, $input);
+    $contenedorPadre.appendChild($contenedorInputs);
+    $contenedorBoton.appendChild($btn);
+    $fragment.append($contenedorPadre, $contenedorBoton);
+    form.appendChild($fragment);
+    form.setAttribute('method', 'GET'); // o POST??
+  }
+
   static agregarElementos(campos) {
     const $fragment = document.createDocumentFragment();
     const $divPadre = DOM.crearDiv(C.DIV_CONTAINER_PADRE_ID, null, DOM.estilizarContenedorPadre);

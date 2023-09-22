@@ -15,11 +15,12 @@ select.addEventListener('change', (event) => {
       break;
     case 'agregar':
     case 'modificar':
-    DOM.agregar($form);
+      DOM.agregar($form);
       break;
     case 'remover':
       break;
     case 'verificarLegajo':
+      DOM.verificarLegajo($form);
       break;
   }
 });
