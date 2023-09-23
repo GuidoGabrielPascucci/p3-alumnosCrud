@@ -1,12 +1,11 @@
 <?php
-
 require 'functions.php';
 require 'constants.php';
 
 if (isset($_REQUEST['accion'])) {
-
-  switch($_REQUEST['accion']) {
   
+  switch($_REQUEST['accion']) {
+
     case "listar":
       listarAlumnos();
       break;
@@ -29,4 +28,3 @@ if (isset($_REQUEST['accion'])) {
   }
 
 }
-
